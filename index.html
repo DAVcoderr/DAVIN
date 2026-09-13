@@ -1,0 +1,3104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="DAV Innovations - Enterprise Software Engineering Incubator offering 100% Free Virtual Internships, Agile Sprint Deliveries, Developer Welcome Kits, and Verifiable LinkedIn Certificates." />
+  <meta name="keywords" content="Free Software Internship, Full Stack Java Developer, MERN Stack Developer, Python Developer, Node.js Backend, C C++ Systems, Data Analyst, HR Specialist, Verifiable Internship Certificate" />
+  <title>DAV INN | DAV Innovations - Professional Engineering Environment</title>
+  
+  <!-- Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: rgba(22, 27, 46, 0.78);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #4f46e5;
+      --accent-glow: rgba(99, 102, 241, 0.35);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --circle-bg: rgba(255, 255, 255, 0.06);
+      --circle-hover: rgba(99, 102, 241, 0.2);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(750px, 90vw);
+      height: 380px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(0,0,0,0) 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ================= TOP NAVBAR ================= */
+    .navbar-container {
+      position: sticky;
+      top: 15px;
+      z-index: 1000;
+      padding: 0 16px;
+      margin-bottom: 20px;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+
+    .navbar-container.nav-hidden {
+      transform: translateY(-110%);
+      opacity: 0;
+    }
+
+    .navbar {
+      max-width: 1250px;
+      margin: 0 auto;
+      background: rgba(22, 27, 46, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 40px;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .brand-logo {
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: -0.5px;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .brand-logo span { color: #6366f1; }
+
+    .desktop-search-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 320px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 7px 18px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .search-box:focus-within {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #6366f1;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .search-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 0.9rem;
+      width: 100%;
+      padding-right: 8px;
+    }
+
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-box button {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .desktop-search-dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      background: #111726;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+      max-height: 320px;
+      overflow-y: auto;
+      z-index: 1200;
+      padding: 8px;
+    }
+
+    .desktop-search-dropdown.active {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .search-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .search-item:hover { background: rgba(99, 102, 241, 0.18); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-item {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--circle-bg);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e2e8f0;
+      font-size: 1.05rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      background: var(--circle-hover);
+      border-color: #6366f1;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--accent-glow);
+    }
+
+    .lms-nav-item {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+      animation: pulseGlowLms 2.5s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlowLms {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+      50% { box-shadow: 0 0 14px 2px rgba(99, 102, 241, 0.6); border-color: #818cf8; }
+    }
+
+    .nav-item.profile-badge {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: white;
+      border: none;
+      user-select: none;
+    }
+
+    .menu-toggle-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .menu-toggle-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-search-btn { display: none; }
+
+    .nav-item::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -38px;
+      background: rgba(15, 23, 42, 0.95);
+      color: #f1f5f9;
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      font-weight: 500;
+    }
+
+    .nav-item:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= MOBILE SEARCH OVERLAY ================= */
+    .mobile-search-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(11, 15, 25, 0.98);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      z-index: 3000;
+      display: none;
+      flex-direction: column;
+      padding: 16px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .mobile-search-modal.active { display: flex; }
+
+    .mobile-search-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-search-input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      padding: 8px 16px;
+      gap: 10px;
+    }
+
+    .mobile-search-input-wrap input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .mobile-search-close-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .mobile-search-results {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .search-card-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #f1f5f9;
+      cursor: pointer;
+    }
+
+    .search-card-item:hover { background: rgba(99, 102, 241, 0.18); }
+
+    /* ================= MAIN WRAPPER & COMMONS ================= */
+    .main-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px 90px;
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      flex: 1;
+    }
+
+    .page-section {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .page-section.active-page {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #818cf8;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 4vw, 2.45rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 40%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      line-height: 1.25;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: clamp(0.92rem, 2vw, 1.05rem);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      min-height: 290px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .hero-image-wrapper:hover img { transform: scale(1.03); }
+
+    .hero-floating-tag {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 22px;
+      padding: 24px;
+      transition: all 0.25s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.35);
+      box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    .glass-card p.card-desc {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .glass-card .tech-pills-wrap { margin-bottom: 20px; }
+
+    .btn-action {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      min-height: 48px;
+      justify-content: center;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+
+    .btn-action:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .tech-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      font-size: 0.76rem;
+      margin: 3px;
+      color: #cbd5e1;
+    }
+
+    .project-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .status-completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .status-ongoing {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .status-locked {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 25px 0;
+    }
+
+    .schedule-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 22px;
+      position: relative;
+    }
+
+    .schedule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .round-number {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      line-height: 34px;
+      text-align: center;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid #6366f1;
+      color: #818cf8;
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    /* ================= DEVELOPER PROFILE ================= */
+    .profile-hero-card {
+      background: linear-gradient(135deg, rgba(22, 27, 46, 0.95), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(99, 102, 241, 0.28);
+      border-radius: 26px;
+      padding: 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75);
+    }
+
+    .dev-header-grid {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #6366f1;
+      box-shadow: 0 10px 25px var(--accent-glow);
+      flex-shrink: 0;
+      background: #111726;
+      margin: 0 auto;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .status-ring {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      width: 18px;
+      height: 18px;
+      background: #10b981;
+      border: 3px solid #0b0f19;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+      animation: pulseGreen 2s infinite;
+      z-index: 2;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    .dev-title-area h2 {
+      font-size: 1.65rem;
+      color: #fff;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dev-student-designation {
+      color: #818cf8;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .verification-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .pill-verified {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .pill-unverified {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .dev-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .dev-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      word-break: break-all;
+    }
+
+    /* Modal Form Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(5, 8, 15, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 16px;
+    }
+
+    .modal-content {
+      background: #111726;
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 500px;
+      padding: 26px 22px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .input-field {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.92rem;
+      outline: none;
+      margin-bottom: 12px;
+      min-height: 48px;
+    }
+
+    .input-field:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .form-group-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .gender-radio-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gender-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+
+    .result-row:last-child { border-bottom: none; }
+
+    /* ================= LMS QUIZ MODAL ================= */
+    .quiz-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 12, 22, 0.96);
+      backdrop-filter: blur(16px);
+      z-index: 2500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .quiz-card {
+      background: #111726;
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 650px;
+      padding: 30px 24px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .quiz-progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .quiz-question-title {
+      font-size: 1.15rem;
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 14px 18px;
+      color: #e2e8f0;
+      text-align: left;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+
+    .quiz-option-btn:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: #6366f1;
+      color: #fff;
+      transform: translateX(4px);
+    }
+
+    /* ================= FOOTER ================= */
+    .short-footer {
+      background: #080b13;
+      border-top: 1px solid var(--card-border);
+      padding: 30px 16px 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .short-footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .footer-brand span { color: #6366f1; }
+
+    .footer-nav-links {
+      display: flex;
+      gap: 16px 20px;
+      list-style: none;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-nav-links a:hover { color: #818cf8; }
+
+    .footer-email-link {
+      color: #38bdf8 !important;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .short-footer-bottom {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Mobile Bottom Bar */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 40px;
+      padding: 6px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+
+    .mobile-bottom-nav.dock-hidden {
+      transform: translate(-50%, 125%);
+      opacity: 0;
+    }
+
+    .bottom-dock-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 1.15rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .bottom-dock-item:hover, .bottom-dock-item.active {
+      color: #fff;
+      border-color: rgba(99, 102, 241, 0.4);
+      background: rgba(99, 102, 241, 0.2);
+    }
+
+    .home-float-btn {
+      position: relative;
+      top: -12px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 22px rgba(99, 102, 241, 0.5);
+      border: 3px solid #0b0f19;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .home-float-btn i { font-size: 1.3rem; }
+
+    /* Drawer Styles */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1500;
+    }
+
+    .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -330px;
+      width: min(310px, 85vw);
+      height: 100vh;
+      background: #111726;
+      border-left: 1px solid var(--card-border);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      z-index: 1600;
+      display: flex;
+      flex-direction: column;
+      padding: 22px 18px;
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open { right: 0; }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .drawer-close-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .drawer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .drawer-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .drawer-nav-link:hover, .drawer-nav-link.active {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.3);
+      color: #fff;
+    }
+
+    .drawer-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #818cf8;
+    }
+
+    @media (max-width: 900px) {
+      .dev-header-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .avatar-wrapper { margin: 0 auto; }
+      .dev-meta-list { align-items: center; }
+      .dev-title-area h2 { justify-content: center; }
+    }
+
+    @media (max-width: 860px) {
+      .hero-container { grid-template-columns: 1fr; }
+      .hero-image-wrapper img { min-height: 220px; max-height: 300px; }
+      .schedule-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-container { top: 10px; padding: 0 12px; }
+      .navbar { padding: 6px 14px; border-radius: 30px; }
+      .desktop-search-wrapper { display: none; }
+      .mobile-search-btn { display: flex; }
+      .desktop-only, .profile-badge { display: none !important; }
+      .menu-toggle-btn { display: flex; }
+      .mobile-bottom-nav { display: flex; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .main-wrapper { padding: 0 12px 85px; }
+
+      .profile-hero-card { padding: 22px 16px; border-radius: 20px; }
+      .dev-header-grid { grid-template-columns: 1fr !important; text-align: center; gap: 16px; }
+      .dev-title-area h2 { justify-content: center; font-size: 1.45rem; }
+      .dev-student-designation { justify-content: center; font-size: 0.88rem; }
+      .dev-meta-list { align-items: center; }
+      .dev-action-column { width: 100%; display: flex; justify-content: center; }
+
+      .short-footer {
+        padding: 26px 16px 95px;
+        text-align: center;
+      }
+      .short-footer-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+      }
+      .footer-nav-links {
+        justify-content: center;
+        gap: 12px 16px;
+      }
+      .short-footer-bottom {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+
+  <!-- ================= TOP NAVBAR ================= -->
+  <div class="navbar-container" id="topNavbarContainer">
+    <header class="navbar">
+      <div class="brand-logo page-nav-trigger" data-target="home-section">
+        DAV <span>INN</span>
+      </div>
+
+      <!-- DESKTOP SEARCH BAR -->
+      <div class="desktop-search-wrapper">
+        <form class="search-box" onsubmit="event.preventDefault();">
+          <input type="text" id="desktopSearchInput" placeholder="Search tracks, certificates, LMS, policies..." autocomplete="off" />
+          <button type="submit" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <div class="desktop-search-dropdown" id="desktopSearchDropdown"></div>
+      </div>
+
+      <!-- Action Items -->
+      <nav class="nav-actions">
+        <button class="nav-item mobile-search-btn" id="openMobileSearchBtn" aria-label="Open Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <a class="nav-item lms-nav-item page-nav-trigger" data-target="lms-section" data-tooltip="Student LMS (Rounds)">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </a>
+
+        <a class="nav-item desktop-only page-nav-trigger" data-target="hall-of-fame-section" data-tooltip="Hall of Fame">
+          <i class="fa-solid fa-trophy" style="color: #f59e0b;"></i>
+        </a>
+
+        <a class="nav-item desktop-only page-nav-trigger" data-target="internship-section" data-tooltip="Careers">
+          <i class="fa-solid fa-briefcase" style="color: #38bdf8;"></i>
+        </a>
+
+        <button class="nav-item open-verify-modal-btn" data-tooltip="Verify Certificate" type="button">
+          <i class="fa-solid fa-certificate" style="color: #10b981;"></i>
+        </button>
+
+        <a class="nav-item profile-badge" id="smartProfileBtn" data-tooltip="Single Click: Profile | Double Click: Menu">
+          <i class="fa-solid fa-user"></i>
+        </a>
+
+        <button class="menu-toggle-btn" id="drawerOpenBtn" aria-label="Open Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </header>
+  </div>
+
+  <!-- ================= MOBILE FULLSCREEN SEARCH OVERLAY ================= -->
+  <div class="mobile-search-modal" id="mobileSearchOverlay">
+    <div class="mobile-search-header">
+      <div class="mobile-search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass" style="color: #818cf8;"></i>
+        <input type="text" id="mobileSearchInput" placeholder="Search Java, Python, React, SQL, Certificate, LMS..." autocomplete="off" />
+      </div>
+      <button class="mobile-search-close-btn" id="closeMobileSearchBtn" aria-label="Close search">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="mobile-search-results" id="mobileSearchResults"></div>
+  </div>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="main-wrapper">
+
+    <!-- 1. HOME SECTION -->
+    <section id="home-section" class="page-section active-page">
+      <div class="hero-container">
+        <div>
+          <div class="section-badge"><i class="fa-solid fa-shield-halved"></i> 100% Free Virtual Internship &bull; Zero Tuition Fee</div>
+          <h1 class="section-title">Enterprise Software Engineering Incubator for Professional Developers.</h1>
+          <p class="section-sub" style="margin: 0 0 16px 0; text-align: left;">
+            Designed for candidates with foundational coding knowledge. Transition beyond artificial classroom lectures and step directly into <strong>Real-World Agile Engineering</strong>—handling sprint backlog allocations, enterprise Git pull request audits, and automated production deployments.
+          </p>
+
+          <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 16px; padding: 16px; margin-bottom: 22px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+              <i class="fa-solid fa-gift" style="color: #f59e0b; font-size: 1.15rem;"></i>
+              <strong style="color: #fff; font-size: 0.95rem;">Internship Deliverables, Developer Kits &amp; Certification Policies:</strong>
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.86rem; color: #cbd5e1;">
+              <li style="display: flex; gap: 8px; align-items: flex-start;">
+                <i class="fa-solid fa-circle-check" style="color: #10b981; margin-top: 3px;"></i>
+                <span><strong>100% Free Internship Program:</strong> Completely free virtual engineering incubator with zero application charges, zero tuition fees, and no hidden costs.</span>
+              </li>
+              <li style="display: flex; gap: 8px; align-items: flex-start;">
+                <i class="fa-solid fa-box-open" style="color: #38bdf8; margin-top: 3px;"></i>
+                <span><strong>Exclusive Developer Welcome Kit:</strong> If your project exhibits exceptional architecture, attractive UI/UX design, and successfully meets client sprint delivery standards, you will be awarded an official <strong>DAV Developer Welcome Kit</strong>. <em>(Note: As an intensive project-based incubator, no monetary stipend is offered)</em>.</span>
+              </li>
+              <li style="display: flex; gap: 8px; align-items: flex-start;">
+                <i class="fa-solid fa-envelope-circle-check" style="color: #818cf8; margin-top: 3px;"></i>
+                <span><strong>Modular &amp; Specialized Credentials:</strong> In addition to full enterprise tracks, candidates receive authentic verifiable completion certificates for <strong>Web Development, Core &amp; Advanced Java, Python, React, JavaScript, SQL Database Architecture</strong>, and many more. Credentials are automatically delivered to your registered email and globally shareable on LinkedIn and portfolios.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="javascript:void(0)" class="btn-action page-nav-trigger" data-target="lms-section" style="width: auto;">
+              <i class="fa-solid fa-graduation-cap"></i> Enter Candidate LMS (3 Rounds)
+            </a>
+            <a href="javascript:void(0)" class="btn-action page-nav-trigger" data-target="internship-section" style="width: auto; background: rgba(255,255,255,0.06); border: 1px solid var(--card-border);">
+              <i class="fa-solid fa-briefcase"></i> View All Engineering Tracks
+            </a>
+            <button class="btn-action open-verify-modal-btn" style="width: auto; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35); color: #10b981;">
+              <i class="fa-solid fa-certificate"></i> Verify Certificate ID
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" alt="Corporate Agile Engineering Team at DAV Innovations" loading="lazy" />
+          <div class="hero-floating-tag">
+            <i class="fa-solid fa-award" style="color: #f59e0b; font-size: 1.2rem;"></i>
+            <div>
+              <strong style="color: #fff; display:block;">Production Deliveries &amp; Developer Kits</strong>
+              <span style="color: var(--text-muted); font-size: 0.74rem;">Exclusive physical merchandise rewarded for top-tier projects</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-grid">
+        <div class="schedule-card">
+          <div class="schedule-badge" style="background:rgba(16,185,129,0.15); color:#10b981; border:1px solid rgba(16,185,129,0.3);">
+            <i class="fa-solid fa-hand-holding-dollar"></i> Free Access
+          </div>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 6px;">Zero Cost &bull; Unpaid Incubator</h3>
+          <p style="color: var(--text-muted); font-size: 0.86rem; line-height: 1.6;">
+            A pure merit-based corporate exposure portal. Gain genuine enterprise engineering expertise without paying any course fees.
+          </p>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-badge" style="background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid rgba(245,158,11,0.3);">
+            <i class="fa-solid fa-gift"></i> Delivery Incentive
+          </div>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 6px;">Developer Kit on Milestone Delivery</h3>
+          <p style="color: var(--text-muted); font-size: 0.86rem; line-height: 1.6;">
+            Teams delivering attractive, robust client architectures are awarded a customized DAV engineering toolkit and corporate swags.
+          </p>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-badge" style="background:rgba(99,102,241,0.15); color:#818cf8; border:1px solid rgba(99,102,241,0.3);">
+            <i class="fa-brands fa-linkedin"></i> Instant Delivery
+          </div>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 6px;">Skill &amp; Modular Certifications</h3>
+          <p style="color: var(--text-muted); font-size: 0.86rem; line-height: 1.6;">
+            Earn dedicated certificates for Java, Python, React, JavaScript, SQL, or full-stack domains dispatched directly to your inbox.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. CAREERS & TRACKS ================= -->
+    <section id="internship-section" class="page-section">
+      <div class="section-header">
+        <div class="section-badge" style="color:#38bdf8; border-color:rgba(56,189,248,0.3); background:rgba(56,189,248,0.1);">
+          <i class="fa-solid fa-briefcase"></i> Enterprise Openings
+        </div>
+        <h1 class="section-title">Active Project Openings &amp; Careers</h1>
+        <p class="section-sub">
+          Choose an enterprise engineering or specialized modular track matching your skill focus. Each track issues a unique, tamper-proof credential upon milestone completion.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <!-- 1. Full Stack Java Developer -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-brands fa-java" style="font-size: 2.1rem; color: #e06c75;"></i>
+            <span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:700;">Live Sprint</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">Full Stack Java Developer</h3>
+          <p class="card-desc">Architect scalable enterprise multi-tier web applications using Java 17/21, Spring Boot microservices, Spring Security JWT, and Hibernate/JPA. Design normalized MySQL schemas, build modular RESTful APIs, resolve concurrency bottlenecks, and integrate modern responsive web interfaces.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">Java 17/21</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">Hibernate/JPA</span>
+            <span class="tech-pill">MySQL</span>
+            <span class="tech-pill">RESTful APIs</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('Full Stack Java Developer')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- 2. MERN Stack Developer -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-brands fa-react" style="font-size: 2.1rem; color: #61afef;"></i>
+            <span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:700;">Live Sprint</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">MERN Stack Developer</h3>
+          <p class="card-desc">Engineer end-to-end full-stack web applications using MongoDB, Express.js, React.js, and Node.js. Build real-time asynchronous data pipelines, architect complex React UI components with Redux Toolkit state management, and construct high-throughput REST APIs with secure JWT authentication.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">MongoDB</span>
+            <span class="tech-pill">Express.js</span>
+            <span class="tech-pill">React.js</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Redux Toolkit</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('MERN Stack Developer')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- 3. Full-Stack Python Developer -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-brands fa-python" style="font-size: 2.1rem; color: #38bdf8;"></i>
+            <span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:700;">Full-Stack</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">Full-Stack Python Developer</h3>
+          <p class="card-desc">Build complete web applications combining Python backends (Django/FastAPI) with dynamic frontend rendering (Jinja2 templates, HTMX, or integrated React UIs). Develop asynchronous background tasks, implement relational database models with PostgreSQL/MySQL, and optimize API throughput.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">Python 3.x</span>
+            <span class="tech-pill">Django / FastAPI</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Jinja2 / Frontend UI</span>
+            <span class="tech-pill">REST APIs</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('Full-Stack Python Developer')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- 4. Node.js Backend Engineer -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-brands fa-node-js" style="font-size: 2.1rem; color: #22c55e;"></i>
+            <span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:700;">Backend Track</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">Node.js Backend Engineer</h3>
+          <p class="card-desc">Construct event-driven, non-blocking backend services and microservices using Node.js and Express/NestJS. Implement distributed caching with Redis, manage asynchronous worker queues, handle database connection pooling, and secure API gateways with role-based access control.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Express / NestJS</span>
+            <span class="tech-pill">Redis</span>
+            <span class="tech-pill">PostgreSQL / MongoDB</span>
+            <span class="tech-pill">WebSockets</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('Node.js Backend Engineer')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- 5. C & C++ Systems Engineer -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-solid fa-file-code" style="font-size: 2.1rem; color: #98c379;"></i>
+            <span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:700;">Core Systems</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">C &amp; C++ Systems Engineer</h3>
+          <p class="card-desc">Write high-performance native software modules focusing on low-level memory management, dynamic pointer operations, custom data structures, and the C++ Standard Template Library (STL). Optimize CPU execution cycles, prevent memory leaks, and develop multi-threaded core processing logic.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">C / C++</span>
+            <span class="tech-pill">Pointers & Memory Mgmt</span>
+            <span class="tech-pill">Data Structures</span>
+            <span class="tech-pill">STL</span>
+            <span class="tech-pill">POSIX Multi-threading</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('C & C++ Systems Engineer')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- 6. Data Analyst & Business Intelligence Associate -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-solid fa-chart-pie" style="font-size: 2.1rem; color: #f59e0b;"></i>
+            <span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:700;">Analytics Track</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">Data Analyst &amp; BI Associate</h3>
+          <p class="card-desc">Transform raw business metrics into actionable enterprise insights. Construct complex multi-table SQL queries using window functions and CTEs, execute exploratory data analysis (EDA) using Python (Pandas/NumPy), and design automated visual performance dashboards.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">Advanced SQL</span>
+            <span class="tech-pill">Python (Pandas / NumPy)</span>
+            <span class="tech-pill">Power BI / Tableau</span>
+            <span class="tech-pill">Data Modeling</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('Data Analyst & Business Intelligence Associate')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- 7. Technical Talent Acquisition & HR Operations Specialist -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-solid fa-users-gear" style="font-size: 2.1rem; color: #c678dd;"></i>
+            <span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:700;">Corporate HR</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">Technical HR &amp; Talent Acquisition</h3>
+          <p class="card-desc">Manage technical candidate screening pipelines across engineering domains and coordinate the 3-stage candidate evaluation rounds. Track sprint velocity and candidate assessment metrics, organize interview operations, and handle official digital credential verifications.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">Technical Sourcing</span>
+            <span class="tech-pill">ATS Operations</span>
+            <span class="tech-pill">Sprint Velocity</span>
+            <span class="tech-pill">HR Operations</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('Technical Talent Acquisition & HR Operations Specialist')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- 8. Web Development Specialist -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-solid fa-code" style="font-size: 2.1rem; color: #38bdf8;"></i>
+            <span style="font-size:0.75rem; background:rgba(56,189,248,0.15); color:#38bdf8; padding:2px 8px; border-radius:10px; font-weight:700;">Modular Cert</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">Web Development Specialist</h3>
+          <p class="card-desc">Master modern responsive layout architecture, cross-browser compatibility, CSS grid/flexbox architectures, DOM manipulation, semantic HTML5, and Core Web Vitals optimization. Earn an authentic, standalone Web Development credential.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">HTML5</span>
+            <span class="tech-pill">CSS3 / SASS</span>
+            <span class="tech-pill">DOM APIs</span>
+            <span class="tech-pill">Responsive Design</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('Web Development Specialist')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- 9. SQL Database Architect -->
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <i class="fa-solid fa-database" style="font-size: 2.1rem; color: #10b981;"></i>
+            <span style="font-size:0.75rem; background:rgba(16,185,129,0.15); color:#10b981; padding:2px 8px; border-radius:10px; font-weight:700;">Database Track</span>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.15rem;">SQL Database Engineering</h3>
+          <p class="card-desc">Focus purely on enterprise relational database engineering: schema normalization (1NF to BCNF), stored procedures, triggers, execution plan optimization, multi-table index tuning, and ACID transactions. Earn a dedicated SQL certification.</p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill">MySQL</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Indexing &amp; Optimization</span>
+            <span class="tech-pill">Stored Procedures</span>
+          </div>
+          <button class="btn-action" onclick="openApplyJobModal('SQL Database Engineering')">
+            Apply Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. STUDENT LMS SECTION ================= -->
+    <section id="lms-section" class="page-section">
+      <div class="section-header">
+        <div class="section-badge" style="background:rgba(99,102,241,0.15); color:#818cf8; border-color:rgba(99,102,241,0.35);">
+          <i class="fa-solid fa-graduation-cap"></i> Student Evaluation LMS
+        </div>
+        <h1 class="section-title">Candidate Assessment &amp; Rounds Portal</h1>
+        <p class="section-sub">
+          Pass Round 1 (Score ≥ 60% out of 12 Questions) to clear Stage 1. Cleared status applies across all your internship tracks.
+        </p>
+      </div>
+
+      <div id="lmsLockoutNotice" style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 16px; padding: 16px; margin-bottom: 25px; text-align: center;">
+        <i class="fa-solid fa-clock-rotate-left" style="color: #ef4444; font-size: 1.6rem; margin-bottom: 6px;"></i>
+        <h4 style="color: #fca5a5;">Assessment Cooldown Active</h4>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">
+          You scored below passing criteria. Your student assessment ID will unlock in: <strong id="lmsCooldownTimer" style="color: #fff;">24:00:00</strong>
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 30px;">
+        <!-- ROUND 1 -->
+        <div class="glass-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="round-number" style="margin-bottom:0;">1</span>
+            <span class="project-status-badge status-ongoing" id="round1StatusBadge"><i class="fa-solid fa-play"></i> Active Stage</span>
+          </div>
+          <h3 style="font-size:1.2rem; color:#fff; margin-bottom:8px;">Aptitude &amp; Analytical Round</h3>
+          <p class="card-desc">
+            Contains 12 comprehensive MCQs testing algorithmic aptitude, quant logic, and pattern deduction. Minimum 60% required to clear.
+          </p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill"><i class="fa-solid fa-list-ol"></i> 12 Questions</span>
+            <span class="tech-pill"><i class="fa-solid fa-stopwatch"></i> 10 Mins Timed</span>
+            <span class="tech-pill"><i class="fa-solid fa-lock"></i> 24h Lock Policy</span>
+          </div>
+          <button class="btn-action" id="startAptitudeBtn" onclick="startAptitudeExam()">
+            <i class="fa-solid fa-play"></i> Start Aptitude &amp; Analytical Round (12 MCQs)
+          </button>
+        </div>
+
+        <!-- ROUND 2 -->
+        <div class="glass-card" id="round2Card" style="opacity: 0.65;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="round-number" style="margin-bottom:0;">2</span>
+            <span class="project-status-badge status-locked" id="round2Badge"><i class="fa-solid fa-lock"></i> Locked</span>
+          </div>
+          <h3 style="font-size:1.2rem; color:#fff; margin-bottom:8px;">Core Technical Coding Round</h3>
+          <p class="card-desc" id="round2CardDescription">
+            Upon passing the Aptitude Round, an automated invitation email containing your <strong>Technical Coding Sandbox access link</strong> will be dispatched to your registered address.
+          </p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill"><i class="fa-solid fa-envelope"></i> Email Link Dispatch</span>
+            <span class="tech-pill"><i class="fa-solid fa-code"></i> 2 Coding Tasks</span>
+            <span class="tech-pill"><i class="fa-solid fa-shield-halved"></i> Stage-1 Clearance Required</span>
+          </div>
+          <button class="btn-action" id="round2ActionBtn" disabled onclick="alert('Technical Round invitation has been dispatched to your registered email. Please check your inbox.')">
+            <i class="fa-solid fa-lock"></i> Aptitude Clearance Required
+          </button>
+        </div>
+
+        <!-- ROUND 3 -->
+        <div class="glass-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="round-number" style="margin-bottom:0;">3</span>
+            <span class="project-status-badge status-upcoming"><i class="fa-solid fa-envelope-circle-check"></i> Stage-3</span>
+          </div>
+          <h3 style="font-size:1.2rem; color:#fff; margin-bottom:8px;">Direct Offer / Sprint Onboarding</h3>
+          <p class="card-desc">
+            Candidates meeting performance benchmarks across Rounds 1 and 2 receive an official corporate onboarding offer letter dispatched directly via email.
+          </p>
+          <div class="tech-pills-wrap">
+            <span class="tech-pill"><i class="fa-solid fa-envelope"></i> Email Notification</span>
+            <span class="tech-pill"><i class="fa-solid fa-bolt"></i> Fast-Track</span>
+          </div>
+          <button class="btn-action" onclick="alert('Evaluated automatically by system backend once Rounds 1 & 2 are passed.')">
+            <i class="fa-solid fa-circle-info"></i> Evaluation Guidelines
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. ABOUT SECTION ================= -->
+    <section id="about-section" class="page-section">
+      <div class="section-header">
+        <div class="section-badge" style="color: #c084fc; border-color: rgba(192, 132, 252, 0.3); background: rgba(192, 132, 252, 0.1);">
+          <i class="fa-solid fa-building-circle-check"></i> Enterprise Foundation &amp; Ethos
+        </div>
+        <h1 class="section-title">About DAV Innovations</h1>
+        <p class="section-sub">DAV Innovations operates as an enterprise software delivery incubator bridging academic knowledge and production engineering.</p>
+      </div>
+
+      <div class="about-hero-card">
+        <div class="about-hero-inner">
+          <div>
+            <h2 style="font-size: 1.4rem; color: #fff; margin-bottom: 10px;">
+              <i class="fa-solid fa-building" style="color: #6366f1; margin-right: 8px;"></i> Real Production Engineering Atmosphere
+            </h2>
+            <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.7; margin-bottom: 12px;">
+              Engineering graduates do not need more passive lectures—they need an active IT workplace. At DAV Innovations, candidates work on live Jira tickets, commit Git pull requests, and build client-ready architectures with peer code reviews.
+            </p>
+            <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--card-border); border-radius: 16px; padding: 14px; margin-top: 10px;">
+              <h4 style="color: #38bdf8; font-size: 0.92rem; margin-bottom: 6px;"><i class="fa-solid fa-circle-info"></i> Core Incubator Policies &amp; Model:</h4>
+              <p style="color: #cbd5e1; font-size: 0.86rem; line-height: 1.6; margin-bottom: 6px;">
+                &bull; <strong>100% Free Virtual Internship:</strong> Zero tuition fees, zero registration fees, and no hidden subscriptions.
+              </p>
+              <p style="color: #cbd5e1; font-size: 0.86rem; line-height: 1.6; margin-bottom: 6px;">
+                &bull; <strong>Unpaid Incubator (No Stipend):</strong> This is an intensive hands-on incubator designed purely for industry experience and portfolio development.
+              </p>
+              <p style="color: #cbd5e1; font-size: 0.86rem; line-height: 1.6; margin-bottom: 6px;">
+                &bull; <strong>Developer Welcome Kit:</strong> Projects that demonstrate attractive UI/UX, robust architecture, and successful sprint deliveries receive an official physical DAV Welcome Kit.
+              </p>
+              <p style="color: #cbd5e1; font-size: 0.86rem; line-height: 1.6;">
+                &bull; <strong>Verifiable Certification:</strong> Completion certificates for Full Stack, Web Dev, Java, Python, React, JavaScript, and SQL are emailed instantly and globally shareable on LinkedIn.
+              </p>
+            </div>
+          </div>
+          <div style="border-radius: 18px; overflow: hidden; border: 1px solid var(--card-border);">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Software Engineering Workspace" style="width:100%; height:100%; min-height:240px; object-fit:cover; display:block;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. HALL OF FAME (DUAL REVIEWS) ================= -->
+    <section id="hall-of-fame-section" class="page-section">
+      <div class="section-header">
+        <div class="section-badge" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.1);">
+          <i class="fa-solid fa-crown"></i> Proven Delivery &amp; Benchmarks
+        </div>
+        <h1 class="section-title">Hall of Fame</h1>
+        <p class="section-sub">Top engineers who cleared all evaluation stages, delivered client production backlogs, and earned authenticated credentials.</p>
+      </div>
+
+      <div class="grid-3">
+        <!-- 1. Full Stack Java Lead -->
+        <div class="glass-card">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom: 12px;">
+            <div style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg, #e06c75, #4f46e5); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;">AD</div>
+            <div>
+              <h4 style="color:#fff; font-size:1.05rem;">Abhishek D.</h4>
+              <p style="font-size:0.8rem; color:#f59e0b;"><i class="fa-solid fa-star"></i> Lead Associate &bull; Java Enterprise</p>
+            </div>
+          </div>
+          <p class="card-desc" style="margin-bottom:12px;">Delivered high-throughput Spring Boot REST microservices with JWT role access and normalized MySQL schemas.</p>
+          <div class="tech-pills-wrap" style="margin-bottom:14px;">
+            <span class="tech-pill">Java 21</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">MySQL</span>
+            <span class="tech-pill">JWT</span>
+          </div>
+
+          <!-- DUAL REVIEWS -->
+          <div style="display:flex; flex-direction:column; gap:10px; border-top:1px solid var(--card-border); padding-top:12px;">
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:0.75rem; color:#818cf8; font-weight:700;"><i class="fa-solid fa-user-tie"></i> Lead Architect Review</span>
+                <span style="color:#f59e0b; font-size:0.72rem;"><i class="fa-solid fa-star"></i> 5.0</span>
+              </div>
+              <p style="color:#cbd5e1; font-size:0.8rem; line-height:1.45; margin:0;">
+                "Excellent modular architecture. The database indexing and transaction rollback handling in JPA were production-grade."
+              </p>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:0.75rem; color:#10b981; font-weight:700;"><i class="fa-solid fa-code-commit"></i> Sprint Client Review</span>
+                <span style="color:#f59e0b; font-size:0.72rem;"><i class="fa-solid fa-star"></i> 4.9</span>
+              </div>
+              <p style="color:#cbd5e1; font-size:0.8rem; line-height:1.45; margin:0;">
+                "Completed 14 backend tickets within the two-week sprint with zero blocker bugs during deployment."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. MERN Stack Engineer -->
+        <div class="glass-card">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom: 12px;">
+            <div style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg, #61afef, #06b6d4); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;">RS</div>
+            <div>
+              <h4 style="color:#fff; font-size:1.05rem;">Rohan S.</h4>
+              <p style="font-size:0.8rem; color:#61afef;"><i class="fa-solid fa-star"></i> MERN Stack Engineer</p>
+            </div>
+          </div>
+          <p class="card-desc" style="margin-bottom:12px;">Constructed real-time WebSocket communication dashboard and Redux Toolkit async state management pipeline.</p>
+          <div class="tech-pills-wrap" style="margin-bottom:14px;">
+            <span class="tech-pill">React.js</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">MongoDB</span>
+            <span class="tech-pill">WebSockets</span>
+          </div>
+
+          <!-- DUAL REVIEWS -->
+          <div style="display:flex; flex-direction:column; gap:10px; border-top:1px solid var(--card-border); padding-top:12px;">
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:0.75rem; color:#818cf8; font-weight:700;"><i class="fa-solid fa-user-tie"></i> Engineering Manager</span>
+                <span style="color:#f59e0b; font-size:0.72rem;"><i class="fa-solid fa-star"></i> 4.9</span>
+              </div>
+              <p style="color:#cbd5e1; font-size:0.8rem; line-height:1.45; margin:0;">
+                "Clean component reuse and state isolation. Reduced DOM re-renders by 35% across the main tracking dashboard."
+              </p>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:0.75rem; color:#10b981; font-weight:700;"><i class="fa-solid fa-users"></i> QA Team Lead</span>
+                <span style="color:#f59e0b; font-size:0.72rem;"><i class="fa-solid fa-star"></i> 5.0</span>
+              </div>
+              <p style="color:#cbd5e1; font-size:0.8rem; line-height:1.45; margin:0;">
+                "Mobile layout responsiveness passed cross-browser audits on first pass. Responsive styles were top-notch."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Python & Data Analyst Engineer -->
+        <div class="glass-card">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom: 12px;">
+            <div style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg, #38bdf8, #10b981); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;">PK</div>
+            <div>
+              <h4 style="color:#fff; font-size:1.05rem;">Pooja K.</h4>
+              <p style="font-size:0.8rem; color:#38bdf8;"><i class="fa-solid fa-star"></i> Python &amp; Data Associate</p>
+            </div>
+          </div>
+          <p class="card-desc" style="margin-bottom:12px;">Engineered automated ETL data extraction pipelines and multi-dimensional SQL aggregation reports for sprint tracking.</p>
+          <div class="tech-pills-wrap" style="margin-bottom:14px;">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Pandas</span>
+          </div>
+
+          <!-- DUAL REVIEWS -->
+          <div style="display:flex; flex-direction:column; gap:10px; border-top:1px solid var(--card-border); padding-top:12px;">
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:0.75rem; color:#818cf8; font-weight:700;"><i class="fa-solid fa-user-tie"></i> Analytics Director</span>
+                <span style="color:#f59e0b; font-size:0.72rem;"><i class="fa-solid fa-star"></i> 5.0</span>
+              </div>
+              <p style="color:#cbd5e1; font-size:0.8rem; line-height:1.45; margin:0;">
+                "Complex window functions and CTEs optimized query speeds significantly. Very thorough with data validation."
+              </p>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:0.75rem; color:#10b981; font-weight:700;"><i class="fa-solid fa-chart-line"></i> Product Owner</span>
+                <span style="color:#f59e0b; font-size:0.72rem;"><i class="fa-solid fa-star"></i> 4.8</span>
+              </div>
+              <p style="color:#cbd5e1; font-size:0.8rem; line-height:1.45; margin:0;">
+                "Automated weekly dashboard generation delivered on time, saving the team over 6 hours of manual reporting."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6. DEVELOPER PROFILE ================= -->
+    <section id="profile-section" class="page-section">
+      <div class="profile-hero-card">
+        <div class="dev-header-grid">
+          <div class="avatar-wrapper">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Profile Photo" id="profileDisplayPhoto" />
+            <span class="status-ring"></span>
+          </div>
+
+          <div class="dev-title-area">
+            <h2>
+              <span id="profileDisplayName">Guest User</span>
+              <span id="profileVerifiedBadgeSlot"></span>
+            </h2>
+
+            <div class="dev-student-designation" id="profileDisplayDesignation">
+              <i class="fa-solid fa-user-graduate"></i> Multi-Track Candidate &bull; Not Assigned
+            </div>
+
+            <div>
+              <span id="profileVerificationStatusPill" class="verification-status-pill pill-unverified">
+                <i class="fa-solid fa-triangle-exclamation"></i> Verification Pending
+              </span>
+            </div>
+            
+            <div class="dev-meta-list">
+              <div class="dev-meta-item">
+                <i class="fa-solid fa-envelope" style="color: #ea4335;"></i>
+                <a href="mailto:not-logged-in@davinn.com" id="profileDisplayEmail" style="color: #fff; text-decoration: none; font-weight: 600;">
+                  not-logged-in@davinn.com
+                </a>
+              </div>
+              <div class="dev-meta-item">
+                <i class="fa-solid fa-phone" style="color: #10b981;"></i>
+                <span id="profileDisplayPhone">+91 Not Registered</span>
+              </div>
+              <div class="dev-meta-item">
+                <i class="fa-solid fa-layer-group" style="color: #f59e0b;"></i>
+                <span>Active Credentials: <strong id="profileCertCount" style="color:#f59e0b;">0 Registered</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dev-action-column">
+            <button class="btn-action open-verify-modal-btn" style="padding: 9px 18px; font-size: 0.85rem; min-height: 40px; width: auto;">
+              <i class="fa-solid fa-certificate"></i> Verify Certificate
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MULTI INTERNSHIP CERTIFICATES LIST CARD -->
+      <div class="glass-card" style="margin-bottom: 25px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+          <h3 style="font-size:1.15rem; color:#fff; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-medal" style="color:#10b981;"></i> My Verified Certificates &amp; Tracks
+          </h3>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Each completed modular skill or full-stack track carries an authentic ID</span>
+        </div>
+        
+        <div id="profileCertificatesContainer" style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Dynamically Populated List -->
+        </div>
+      </div>
+
+      <!-- SOCIAL ACCOUNTS & VERIFICATION FORM CARD -->
+      <div class="glass-card" style="margin-bottom: 25px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+          <h3 style="font-size:1.15rem; color:#fff; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-link" style="color:#6366f1;"></i> Developer Accounts &amp; Verification
+          </h3>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Both links required for Blue Verified Tick</span>
+        </div>
+
+        <form onsubmit="event.preventDefault(); saveDeveloperSocials();">
+          <div class="grid-2">
+            <div>
+              <label class="form-group-label"><i class="fa-brands fa-linkedin" style="color:#0077b5;"></i> LinkedIn Profile URL</label>
+              <input type="url" class="input-field" id="inputProfileLinkedin" placeholder="https://linkedin.com/in/username" />
+            </div>
+            <div>
+              <label class="form-group-label"><i class="fa-brands fa-github" style="color:#fff;"></i> GitHub Profile URL</label>
+              <input type="url" class="input-field" id="inputProfileGithub" placeholder="https://github.com/username" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-action" style="width:100%; margin-top:8px;">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Update &amp; Authenticate Profiles
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= COMPACT FOOTER ================= -->
+  <footer class="short-footer">
+    <div class="short-footer-content">
+      <div class="footer-brand">
+        DAV <span>Innovations</span>
+      </div>
+
+      <ul class="footer-nav-links">
+        <li><a href="javascript:void(0)" class="page-nav-trigger" data-target="home-section">Home</a></li>
+        <li><a href="javascript:void(0)" class="page-nav-trigger" data-target="lms-section">Student LMS</a></li>
+        <li><a href="javascript:void(0)" class="page-nav-trigger" data-target="about-section">About</a></li>
+        <li><a href="javascript:void(0)" class="page-nav-trigger" data-target="internship-section">Careers</a></li>
+        <li><a href="javascript:void(0)" class="page-nav-trigger" data-target="hall-of-fame-section">Hall of Fame</a></li>
+        <li><a href="javascript:void(0)" class="page-nav-trigger" data-target="profile-section">My Profile</a></li>
+        <li><a href="javascript:void(0)" class="open-verify-modal-btn"><i class="fa-solid fa-certificate"></i> Verify Certificate</a></li>
+        <li>
+          <a href="mailto:career@davinn.com" class="footer-email-link">
+            <i class="fa-solid fa-envelope"></i> career@davinn.com
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="short-footer-bottom">
+      <span>&copy; 2026 DAV Innovations. All rights reserved.</span>
+      <span>Enterprise Engineering Incubator &bull; 100% Free Virtual Internship Program</span>
+    </div>
+  </footer>
+
+  <!-- ================= HAMBURGER DRAWER ================= -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg, #4f46e5, #06b6d4); display:flex; align-items:center; justify-content:center; color:#fff;">
+          <i class="fa-solid fa-user-ninja"></i>
+        </div>
+        <div>
+          <h4 style="font-size: 0.95rem; color:#fff;" id="drawerDisplayName">Guest User</h4>
+          <p style="font-size: 0.75rem; color:var(--text-muted);" id="drawerDisplayEmail">not-logged-in@davinn.com</p>
+        </div>
+      </div>
+      <button class="drawer-close-btn" id="drawerCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <ul class="drawer-nav-list">
+      <li>
+        <div class="drawer-nav-link page-nav-trigger" data-target="home-section">
+          <div class="drawer-badge"><i class="fa-solid fa-house"></i></div>
+          <span>Home</span>
+        </div>
+      </li>
+      <li>
+        <div class="drawer-nav-link page-nav-trigger" data-target="lms-section">
+          <div class="drawer-badge" style="background:rgba(99,102,241,0.2);"><i class="fa-solid fa-graduation-cap" style="color:#818cf8;"></i></div>
+          <span>Student LMS (Rounds)</span>
+        </div>
+      </li>
+      <li>
+        <div class="drawer-nav-link page-nav-trigger" data-target="about-section">
+          <div class="drawer-badge"><i class="fa-solid fa-circle-info" style="color:#a855f7;"></i></div>
+          <span>About Company</span>
+        </div>
+      </li>
+      <li>
+        <div class="drawer-nav-link page-nav-trigger" data-target="internship-section">
+          <div class="drawer-badge"><i class="fa-solid fa-briefcase" style="color:#38bdf8;"></i></div>
+          <span>Careers</span>
+        </div>
+      </li>
+      <li>
+        <div class="drawer-nav-link page-nav-trigger" data-target="hall-of-fame-section">
+          <div class="drawer-badge"><i class="fa-solid fa-trophy" style="color:#f59e0b;"></i></div>
+          <span>Hall of Fame</span>
+        </div>
+      </li>
+      <li>
+        <div class="drawer-nav-link page-nav-trigger" data-target="profile-section">
+          <div class="drawer-badge" style="background:linear-gradient(135deg, #4f46e5, #06b6d4); color:#fff;"><i class="fa-solid fa-id-badge"></i></div>
+          <span style="font-weight:700;">My Profile</span>
+        </div>
+      </li>
+      <li>
+        <div class="drawer-nav-link open-verify-modal-btn">
+          <div class="drawer-badge" style="background:rgba(16,185,129,0.2); color:#10b981;"><i class="fa-solid fa-certificate"></i></div>
+          <span style="font-weight:700; color:#10b981;">Verify Certificate</span>
+        </div>
+      </li>
+      <li>
+        <div class="drawer-nav-link" id="drawerLogoutBtn" style="color: #ef4444; background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2);">
+          <div class="drawer-badge" style="background:rgba(239,68,68,0.15); color:#ef4444;"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
+          <span style="font-weight:700;">Logout</span>
+        </div>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ================= MOBILE BOTTOM NAV ================= -->
+  <nav class="mobile-bottom-nav" id="mobileBottomDock">
+    <div class="bottom-dock-item page-nav-trigger" data-target="hall-of-fame-section">
+      <i class="fa-solid fa-trophy" style="color: #f59e0b;"></i>
+    </div>
+    <div class="home-float-btn page-nav-trigger" data-target="home-section">
+      <i class="fa-solid fa-house"></i>
+    </div>
+    <div class="bottom-dock-item page-nav-trigger" data-target="internship-section">
+      <i class="fa-solid fa-briefcase" style="color: #38bdf8;"></i>
+    </div>
+  </nav>
+
+  <!-- ================= VERIFY CERTIFICATE MODAL ================= -->
+  <div class="modal-overlay" id="verifyCertificateModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeVerifyCertModalBtn"><i class="fa-solid fa-xmark"></i></button>
+
+      <div style="text-align:center; margin-bottom: 20px;">
+        <div style="width:55px; height:55px; border-radius:50%; background:rgba(16,185,129,0.15); display:flex; align-items:center; justify-content:center; color:#10b981; margin:0 auto 10px; font-size:1.4rem;">
+          <i class="fa-solid fa-certificate"></i>
+        </div>
+        <h2 style="font-size:1.3rem; color:#fff;">Verify Official Certificate</h2>
+        <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">
+          Enter Candidate Verification ID (Format: <code>DAV-00000K</code>)
+        </p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); executeCertificateVerification();">
+        <label class="form-group-label">Candidate Certificate ID:</label>
+        <input type="text" class="input-field" id="certSearchInput" placeholder="DAV-12345K" style="text-transform: uppercase;" required />
+        <button type="submit" class="btn-action" style="width:100%;">
+          <i class="fa-solid fa-shield-check"></i> Authenticate Credential
+        </button>
+      </form>
+
+      <!-- Verification Output Result -->
+      <div id="certVerificationOutput" style="display:none; margin-top:18px; padding:16px; border-radius:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1);">
+        <div style="text-align:center; margin-bottom:12px;">
+          <span id="certBadgeOutput" class="verification-status-pill pill-verified" style="font-size:0.85rem; padding:5px 14px;"></span>
+        </div>
+        <div class="result-row"><span>Student Name:</span><strong id="certNameOutput" style="color:#fff;">--</strong></div>
+        <div class="result-row"><span>Certificate ID:</span><strong id="certIdOutput" style="color:#38bdf8;">--</strong></div>
+        <div class="result-row"><span>Certified Domain / Track:</span><span id="certTrackOutput" style="color:#cbd5e1; text-align:right;">--</span></div>
+        <div class="result-row"><span>Issued Date:</span><span id="certDateOutput" style="color:#cbd5e1;">--</span></div>
+        <div class="result-row"><span>Total Tracks Cleared:</span><span id="certTotalCountOutput" style="color:#f59e0b; font-weight:700;">1 Active Track</span></div>
+        <div class="result-row"><span>Status:</span><b style="color:#10b981;"><i class="fa-solid fa-circle-check"></i> Authenticated &amp; Valid</b></div>
+      </div>
+      
+      <div id="certNotFoundNotice" style="display:none; margin-top:15px; padding:12px; border-radius:12px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; text-align:center; font-size:0.88rem;">
+        <i class="fa-solid fa-circle-exclamation"></i> No candidate record found for this Certificate ID.
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JOB APPLICATION MODAL ================= -->
+  <div class="modal-overlay" id="applyJobModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeApplyJobModalBtn"><i class="fa-solid fa-xmark"></i></button>
+
+      <div style="text-align:center; margin-bottom: 20px;">
+        <div style="width:50px; height:50px; border-radius:50%; background:rgba(99,102,241,0.15); display:flex; align-items:center; justify-content:center; color:#818cf8; margin:0 auto 10px; font-size:1.3rem;">
+          <i class="fa-solid fa-file-signature"></i>
+        </div>
+        <h2 style="font-size:1.3rem; color:#fff;">Candidate Application Form</h2>
+        <p style="font-size:0.84rem; color:var(--text-muted); margin-top:4px;">
+          Select your enterprise or modular technology track. An authentic verifiable credential will be allocated upon completion.
+        </p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); handleJobApplicationSubmit();">
+        <label class="form-group-label">Candidate Full Name (Editable):</label>
+        <input type="text" class="input-field" id="applyCandidateName" required />
+
+        <label class="form-group-label">Candidate Active Email (Editable):</label>
+        <input type="email" class="input-field" id="applyCandidateEmail" required />
+
+        <label class="form-group-label">WhatsApp Contact Number:</label>
+        <input type="tel" class="input-field" id="applyCandidatePhone" placeholder="+91 98765 43210" required />
+
+        <label class="form-group-label">Gender:</label>
+        <div class="gender-radio-group">
+          <label class="gender-radio-label">
+            <input type="radio" name="candidateGender" value="Male" checked /> Male
+          </label>
+          <label class="gender-radio-label">
+            <input type="radio" name="candidateGender" value="Female" /> Female
+          </label>
+          <label class="gender-radio-label">
+            <input type="radio" name="candidateGender" value="Other" /> Other
+          </label>
+        </div>
+
+        <label class="form-group-label">College / Institute Name:</label>
+        <input type="text" class="input-field" id="applyCollegeName" placeholder="e.g. Government Engineering College" required />
+
+        <label class="form-group-label">Passing Year:</label>
+        <select class="input-field" id="applyPassingYear" style="background:#171d2d; color:#fff;" required>
+          <option value="" disabled selected>Select Passing Year</option>
+          <option value="2028">2028</option>
+          <option value="2027">2027</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+        </select>
+
+        <label class="form-group-label">Selected Track / Certification Focus:</label>
+        <select class="input-field" id="applySelectedRole" style="background:#171d2d; color:#fff;" required>
+          <optgroup label="Enterprise Full-Stack Tracks">
+            <option value="Full Stack Java Developer">Full Stack Java Developer</option>
+            <option value="MERN Stack Developer">MERN Stack Developer</option>
+            <option value="Full-Stack Python Developer">Full-Stack Python Developer</option>
+            <option value="Node.js Backend Engineer">Node.js Backend Engineer</option>
+            <option value="C & C++ Systems Engineer">C & C++ Systems Engineer</option>
+            <option value="Data Analyst & Business Intelligence Associate">Data Analyst & Business Intelligence Associate</option>
+            <option value="Technical Talent Acquisition & HR Operations Specialist">Technical Talent Acquisition & HR Operations Specialist</option>
+          </optgroup>
+          <optgroup label="Modular Skill Certifications">
+            <option value="Web Development Specialist">Web Development Specialist (HTML/CSS/DOM)</option>
+            <option value="Java Core & Enterprise Certification">Java (Core &amp; Enterprise Architecture)</option>
+            <option value="Python Programming & Automation">Python (Core &amp; Automation)</option>
+            <option value="React.js Frontend Architecture">React.js (Component Architecture)</option>
+            <option value="Modern JavaScript (ES6+) Engineering">JavaScript (ES6+ &amp; Asynchronous APIs)</option>
+            <option value="SQL Database Engineering">SQL (Relational Schema &amp; Optimization)</option>
+          </optgroup>
+        </select>
+
+        <button type="submit" class="btn-action" id="applySubmitBtn" style="width:100%; margin-top:8px;">
+          <i class="fa-solid fa-paper-plane"></i> Submit Application &amp; Enroll Track
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= AUTHENTICATION MODAL ================= -->
+  <div class="modal-overlay" id="systemAuthModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeSystemAuthModalBtn"><i class="fa-solid fa-xmark"></i></button>
+
+      <div style="text-align:center; margin-bottom: 20px;">
+        <h2 id="authFormMainHeading" style="font-size:1.3rem; color:#fff;">Candidate Portal Login</h2>
+      </div>
+
+      <form id="candidateLoginForm" onsubmit="event.preventDefault(); handleSystemLogin();">
+        <input type="email" class="input-field" id="loginEmail" placeholder="Registered Gmail" required />
+        <input type="password" class="input-field" id="loginPassword" placeholder="Password" required />
+        <button type="submit" class="btn-action" style="width:100%;">Login</button>
+        <div style="text-align:center; margin-top:14px; font-size:0.86rem; color:var(--text-muted);">
+          Don't have an account? <a href="javascript:void(0)" onclick="toggleAuthFormMode('register')" style="color:#818cf8; font-weight:700;">Register Now</a>
+        </div>
+      </form>
+
+      <form id="candidateRegisterForm" style="display:none;" onsubmit="event.preventDefault(); handleSystemRegister();">
+        <input type="text" class="input-field" id="regName" placeholder="Full Legal Name" required />
+        <input type="tel" class="input-field" id="regPhone" placeholder="WhatsApp Number" required />
+        <input type="email" class="input-field" id="regEmail" placeholder="Active Email" required />
+        <input type="password" class="input-field" id="regPassword" placeholder="Create Password" required />
+        <button type="submit" class="btn-action" id="registerSubmitBtn" style="width:100%;">Create Account &amp; Get Certificate ID</button>
+        <div style="text-align:center; margin-top:14px; font-size:0.86rem; color:var(--text-muted);">
+          Already registered? <a href="javascript:void(0)" onclick="toggleAuthFormMode('login')" style="color:#818cf8; font-weight:700;">Login Here</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= LMS QUIZ MODAL ================= -->
+  <div class="quiz-overlay" id="aptitudeQuizOverlay">
+    <div class="quiz-card" id="quizActiveContainer">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <span style="font-size:0.82rem; color:#818cf8; font-weight:700; text-transform:uppercase;" id="quizCounterText">Question 1 of 12</span>
+        <span style="font-size:0.85rem; color:#f59e0b; font-weight:700;"><i class="fa-solid fa-clock"></i> <span id="quizTimerText">10:00</span></span>
+      </div>
+
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="quizProgressFill"></div>
+      </div>
+
+      <h3 class="quiz-question-title" id="quizQuestionDisplay">Loading question...</h3>
+      <div id="quizOptionsContainer"></div>
+    </div>
+
+    <div class="quiz-card" id="quizResultContainer" style="display:none; text-align:center;">
+      <div id="resultIconBox" style="width:65px; height:65px; border-radius:50%; margin:0 auto 15px; display:flex; align-items:center; justify-content:center; font-size:2rem;"></div>
+      <h2 id="resultTitle" style="color:#fff; font-size:1.5rem; margin-bottom:8px;"></h2>
+      
+      <!-- APTITUDE CLEARANCE EMAIL NOTICE BANNER -->
+      <div id="resultEmailNoticeBanner" style="display:none; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 14px; margin-bottom: 18px; text-align: left;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <i class="fa-solid fa-envelope-circle-check" style="color: #38bdf8; font-size: 1.6rem; margin-top: 2px;"></i>
+          <div>
+            <strong style="color: #fff; font-size: 0.95rem; display: block; margin-bottom: 4px;">Technical Round (Coding Sandbox) Link Dispatched!</strong>
+            <p style="color: #cbd5e1; font-size: 0.88rem; line-height: 1.55; margin: 0;">
+              Congratulations on clearing Stage 1. A direct access invitation link for your <strong>Technical Coding Sandbox</strong> has been dispatched to your registered email: <strong id="resultMailTarget" style="color:#38bdf8;"></strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p id="resultScoreNotice" style="color:var(--text-muted); font-size:0.95rem; margin-bottom:20px; line-height:1.6;"></p>
+
+      <div style="background:rgba(255,255,255,0.03); border:1px solid var(--card-border); border-radius:18px; padding:18px; margin-bottom:20px;">
+        <div class="result-row"><span>Your Score:</span><strong id="finalScoreVal" style="color:#fff;">0/0</strong></div>
+        <div class="result-row"><span>Percentage:</span><strong id="finalScorePct" style="color:#818cf8;">0%</strong></div>
+        <div class="result-row"><span>Criteria:</span><b>60% Minimum to Pass</b></div>
+        <div class="result-row"><span>Stage Status:</span><b id="finalStatusText">Evaluating...</b></div>
+      </div>
+
+      <button class="btn-action" id="quizResultAcknowledgeBtn" onclick="closeQuizResult()">Proceed</button>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT SYSTEM ENGINE ================= -->
+  <script>
+    // **************************************************************************
+    // CONNECTED GOOGLE APPS SCRIPT WEB APP URL
+    // **************************************************************************
+    const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzsBKlasm9C3wqluP4Y6-n4tPbJ_ljUkjf_UcumZH6w4H9ElRvLgQl5bjRauOlWxrkM/exec";
+
+    // Asynchronous function to transmit student records to Google Sheets Excel
+    async function syncToGoogleSheetExcel(payload) {
+      if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
+        console.warn("Google Sheet Web App URL not configured yet. Skipping cloud spreadsheet sync.");
+        return;
+      }
+      try {
+        await fetch(GOOGLE_SHEET_WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        console.log("Successfully synced record to Google Sheets:", payload);
+      } catch (err) {
+        console.error("Failed to sync record to Google Sheets:", err);
+      }
+    }
+
+    // 1. SMART SCROLL NAVIGATION
+    let lastScrollTop = 0;
+    const topNavbar = document.getElementById("topNavbarContainer");
+    const bottomDock = document.getElementById("mobileBottomDock");
+
+    window.addEventListener("scroll", () => {
+      let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop && currentScroll > 60) {
+        topNavbar.classList.add("nav-hidden");
+        bottomDock.classList.add("dock-hidden");
+      } else {
+        topNavbar.classList.remove("nav-hidden");
+        bottomDock.classList.remove("dock-hidden");
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, { passive: true });
+
+    // 2. SPA NAVIGATION
+    const pageTriggers = document.querySelectorAll(".page-nav-trigger");
+    const pages = document.querySelectorAll(".page-section");
+
+    function switchPage(targetId) {
+      pages.forEach(p => p.classList.remove("active-page"));
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.classList.add("active-page");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      pageTriggers.forEach(btn => {
+        if (btn.getAttribute("data-target") === targetId) btn.classList.add("active");
+        else btn.classList.remove("active");
+      });
+    }
+
+    pageTriggers.forEach(t => {
+      t.addEventListener("click", () => {
+        const target = t.getAttribute("data-target");
+        if (target) {
+          switchPage(target);
+          closeDrawer();
+        }
+      });
+    });
+
+    // 3. SINGLE TAP = PROFILE | DOUBLE TAP = HAMBURGER DRAWER
+    const smartProfileBtn = document.getElementById("smartProfileBtn");
+    const mobileDrawer = document.getElementById("mobileDrawer");
+    const drawerOverlay = document.getElementById("drawerOverlay");
+    let clickCount = 0;
+    let clickTimer = null;
+
+    if (smartProfileBtn) {
+      smartProfileBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        clickCount++;
+        if (clickCount === 1) {
+          clickTimer = setTimeout(() => {
+            switchPage("profile-section");
+            clickCount = 0;
+          }, 260);
+        } else if (clickCount === 2) {
+          clearTimeout(clickTimer);
+          openDrawer();
+          clickCount = 0;
+        }
+      });
+    }
+
+    function openDrawer() {
+      mobileDrawer.classList.add("open");
+      drawerOverlay.classList.add("active");
+    }
+    function closeDrawer() {
+      mobileDrawer.classList.remove("open");
+      drawerOverlay.classList.remove("active");
+    }
+
+    document.getElementById("drawerOpenBtn").onclick = openDrawer;
+    document.getElementById("drawerCloseBtn").onclick = closeDrawer;
+    drawerOverlay.onclick = closeDrawer;
+
+    document.getElementById("drawerLogoutBtn").onclick = () => {
+      if (confirm("Are you sure you want to log out?")) {
+        localStorage.removeItem("davinn_auth_session");
+        localStorage.removeItem("davinn_dev_name");
+        localStorage.removeItem("davinn_dev_email");
+        localStorage.removeItem("davinn_dev_phone");
+        localStorage.removeItem("davinn_dev_track");
+        localStorage.removeItem("davinn_dev_linkedin");
+        localStorage.removeItem("davinn_dev_github");
+        closeDrawer();
+        loadSavedProfile();
+        switchPage("home-section");
+        alert("Logged out successfully.");
+      }
+    };
+
+    // 4. CERTIFICATE SERIAL GENERATOR (DAV-00000K FORMAT)
+    function generateCertificateSerial() {
+      const randomNum = Math.floor(Math.random() * 100000);
+      const paddedNum = String(randomNum).padStart(5, '0');
+      return `DAV-${paddedNum}K`;
+    }
+
+    function registerNewCertificate(trackName, studentName, studentEmail) {
+      const newId = generateCertificateSerial();
+      const issueDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      
+      let registry = JSON.parse(localStorage.getItem("davinn_registered_certs") || "{}");
+      registry[newId.toUpperCase()] = {
+        name: studentName,
+        email: studentEmail,
+        track: trackName,
+        date: issueDate
+      };
+      localStorage.setItem("davinn_registered_certs", JSON.stringify(registry));
+
+      let studentCerts = JSON.parse(localStorage.getItem("davinn_student_certs_list") || "[]");
+      const existing = studentCerts.find(c => c.track === trackName);
+      if (!existing) {
+        studentCerts.push({ id: newId, track: trackName, date: issueDate });
+        localStorage.setItem("davinn_student_certs_list", JSON.stringify(studentCerts));
+      }
+      return newId;
+    }
+
+    // 5. AUTHENTICATION TIMERS & LOGINS
+    const systemAuthModal = document.getElementById("systemAuthModal");
+    const closeSystemAuthModalBtn = document.getElementById("closeSystemAuthModalBtn");
+    let authPopupTimer = null;
+
+    function startAuthPopupTimer(delayMs) {
+      if (localStorage.getItem("davinn_auth_session")) return;
+      clearTimeout(authPopupTimer);
+      authPopupTimer = setTimeout(() => {
+        if (!localStorage.getItem("davinn_auth_session")) {
+          systemAuthModal.style.display = "flex";
+        }
+      }, delayMs);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loadSavedProfile();
+      checkLockoutStatus();
+      if (!localStorage.getItem("davinn_auth_session")) {
+        startAuthPopupTimer(60000);
+      }
+    });
+
+    closeSystemAuthModalBtn.onclick = () => {
+      systemAuthModal.style.display = "none";
+      startAuthPopupTimer(30000);
+    };
+
+    function toggleAuthFormMode(mode) {
+      const loginForm = document.getElementById("candidateLoginForm");
+      const regForm = document.getElementById("candidateRegisterForm");
+      if (mode === 'register') {
+        loginForm.style.display = "none";
+        regForm.style.display = "block";
+      } else {
+        loginForm.style.display = "block";
+        regForm.style.display = "none";
+      }
+    }
+
+    function handleSystemLogin() {
+      const email = document.getElementById("loginEmail").value.trim();
+      localStorage.setItem("davinn_auth_session", email);
+      if (!localStorage.getItem("davinn_dev_name")) {
+        const derived = email.split("@")[0].replace(/[\._]/g, ' ');
+        localStorage.setItem("davinn_dev_name", derived.charAt(0).toUpperCase() + derived.slice(1));
+      }
+      localStorage.setItem("davinn_dev_email", email);
+
+      systemAuthModal.style.display = "none";
+      loadSavedProfile();
+      alert("Welcome! Logged in successfully.");
+    }
+
+    async function handleSystemRegister() {
+      const btn = document.getElementById("registerSubmitBtn");
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
+      btn.disabled = true;
+
+      const name = document.getElementById("regName").value.trim();
+      const phone = document.getElementById("regPhone").value.trim();
+      const email = document.getElementById("regEmail").value.trim();
+      const defaultTrack = "Full Stack Java Developer";
+
+      localStorage.setItem("davinn_dev_name", name);
+      localStorage.setItem("davinn_dev_phone", phone);
+      localStorage.setItem("davinn_dev_email", email);
+      localStorage.setItem("davinn_auth_session", email);
+      localStorage.setItem("davinn_dev_track", defaultTrack);
+
+      const generatedId = registerNewCertificate(defaultTrack, name, email);
+
+      // Push registration data directly to Excel (Google Sheet)
+      await syncToGoogleSheetExcel({
+        name: name,
+        email: email,
+        phone: phone,
+        gender: "N/A",
+        college: "Portal Registered",
+        passingYear: "N/A",
+        track: defaultTrack,
+        certificateId: generatedId
+      });
+
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      systemAuthModal.style.display = "none";
+      loadSavedProfile();
+
+      alert(`Registration Successful!\n\nCandidate: ${name}\nCertificate ID: ${generatedId}\nTrack: ${defaultTrack}\nData successfully stored.`);
+    }
+
+    // 6. PROFILE & MULTI-CERTIFICATE DISPLAY
+    function loadSavedProfile() {
+      const isLoggedIn = !!localStorage.getItem("davinn_auth_session");
+      const savedName = localStorage.getItem("davinn_dev_name") || (isLoggedIn ? "Candidate" : "Guest User");
+      const savedEmail = localStorage.getItem("davinn_dev_email") || (isLoggedIn ? localStorage.getItem("davinn_auth_session") : "not-logged-in@davinn.com");
+      const savedPhone = localStorage.getItem("davinn_dev_phone") || (isLoggedIn ? "+91 98765 00000" : "+91 Not Registered");
+
+      document.getElementById("profileDisplayName").innerText = savedName;
+      document.getElementById("profileDisplayEmail").innerText = savedEmail;
+      document.getElementById("profileDisplayEmail").href = "mailto:" + savedEmail;
+      document.getElementById("profileDisplayPhone").innerText = savedPhone;
+
+      document.getElementById("drawerDisplayName").innerText = savedName;
+      document.getElementById("drawerDisplayEmail").innerText = savedEmail;
+
+      const certsList = JSON.parse(localStorage.getItem("davinn_student_certs_list") || "[]");
+      const certCount = certsList.length;
+      document.getElementById("profileCertCount").innerText = `${certCount} Completed Track${certCount > 1 ? 's' : ''}`;
+
+      if (certCount > 0) {
+        document.getElementById("profileDisplayDesignation").innerHTML = `<i class="fa-solid fa-user-graduate"></i> Certified Associate &bull; ${certCount} Tracks`;
+      } else {
+        document.getElementById("profileDisplayDesignation").innerHTML = `<i class="fa-solid fa-user-graduate"></i> Student Candidate &bull; Not Assigned`;
+      }
+
+      const certContainer = document.getElementById("profileCertificatesContainer");
+      certContainer.innerHTML = "";
+
+      if (certsList.length === 0) {
+        certContainer.innerHTML = `<div style="padding:14px; text-align:center; color:var(--text-muted); font-size:0.88rem; border:1px dashed var(--card-border); border-radius:12px;">No active internships registered yet. Apply to any track in the Careers section to generate an authentic certificate ID.</div>`;
+      } else {
+        certsList.forEach((c) => {
+          const item = document.createElement("div");
+          item.style.cssText = "display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:12px 16px;";
+          item.innerHTML = `
+            <div>
+              <div style="color:#fff; font-weight:700; font-size:0.95rem; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-medal" style="color:#f59e0b;"></i> ${c.track}
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted); margin-top:3px;">
+                ID: <strong style="color:#38bdf8;">${c.id}</strong> &bull; Issued: ${c.date}
+              </div>
+            </div>
+            <div>
+              <button onclick="quickVerifyCert('${c.id}')" class="btn-action" style="padding:6px 14px; font-size:0.8rem; min-height:34px; width:auto; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); color:#10b981;">
+                <i class="fa-solid fa-shield-check"></i> Verify
+              </button>
+            </div>
+          `;
+          certContainer.appendChild(item);
+        });
+      }
+
+      const verifiedBadgeSlot = document.getElementById("profileVerifiedBadgeSlot");
+      const statusPill = document.getElementById("profileVerificationStatusPill");
+      const savedLinkedin = localStorage.getItem("davinn_dev_linkedin") || "";
+      const savedGithub = localStorage.getItem("davinn_dev_github") || "";
+      const hasFullCredentials = isLoggedIn && savedLinkedin.trim().length > 10 && savedGithub.trim().length > 10;
+
+      if (hasFullCredentials && certCount > 0) {
+        verifiedBadgeSlot.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #38bdf8; font-size: 1.15rem;" title="Verified Developer"></i>`;
+        statusPill.className = "verification-status-pill pill-verified";
+        statusPill.innerHTML = `<i class="fa-solid fa-shield-halved"></i> Certified &amp; Profile Verified`;
+      } else {
+        verifiedBadgeSlot.innerHTML = "";
+        statusPill.className = "verification-status-pill pill-unverified";
+        statusPill.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Verification Pending (Link Accounts)`;
+      }
+    }
+
+    function saveDeveloperSocials() {
+      if (!localStorage.getItem("davinn_auth_session")) {
+        alert("Please log in first to save your developer accounts.");
+        systemAuthModal.style.display = "flex";
+        return;
+      }
+
+      const linkedinVal = document.getElementById("inputProfileLinkedin").value.trim();
+      const githubVal = document.getElementById("inputProfileGithub").value.trim();
+
+      if (!linkedinVal || !githubVal) {
+        alert("Please provide valid links for both LinkedIn and GitHub to verify your profile.");
+        return;
+      }
+
+      localStorage.setItem("davinn_dev_linkedin", linkedinVal);
+      localStorage.setItem("davinn_dev_github", githubVal);
+
+      loadSavedProfile();
+      alert("Accounts linked successfully! Verified badge activated.");
+    }
+
+    // 7. VERIFY CERTIFICATE MODAL LOGIC
+    const verifyCertModal = document.getElementById("verifyCertificateModal");
+    const closeVerifyCertModalBtn = document.getElementById("closeVerifyCertModalBtn");
+    const verifyButtons = document.querySelectorAll(".open-verify-modal-btn");
+
+    function openVerifyModal() {
+      closeDrawer();
+      document.getElementById("certVerificationOutput").style.display = "none";
+      document.getElementById("certNotFoundNotice").style.display = "none";
+      document.getElementById("certSearchInput").value = "";
+      verifyCertModal.style.display = "flex";
+    }
+
+    function quickVerifyCert(certId) {
+      openVerifyModal();
+      document.getElementById("certSearchInput").value = certId;
+      executeCertificateVerification();
+    }
+
+    verifyButtons.forEach(btn => btn.addEventListener("click", openVerifyModal));
+    closeVerifyCertModalBtn.onclick = () => verifyCertModal.style.display = "none";
+
+    function executeCertificateVerification() {
+      const searchId = document.getElementById("certSearchInput").value.trim().toUpperCase();
+      const outputBox = document.getElementById("certVerificationOutput");
+      const notFoundBox = document.getElementById("certNotFoundNotice");
+
+      const registry = JSON.parse(localStorage.getItem("davinn_registered_certs") || "{}");
+      let match = registry[searchId];
+
+      if (match) {
+        notFoundBox.style.display = "none";
+        document.getElementById("certBadgeOutput").innerHTML = `<i class="fa-solid fa-circle-check"></i> Verified Enterprise Credential`;
+        document.getElementById("certNameOutput").innerText = match.name;
+        document.getElementById("certIdOutput").innerText = searchId;
+        document.getElementById("certTrackOutput").innerText = match.track;
+        document.getElementById("certDateOutput").innerText = match.date;
+
+        const allCerts = Object.values(registry);
+        const candidateTotal = allCerts.filter(c => c.email && c.email.toLowerCase() === (match.email || "").toLowerCase()).length;
+        document.getElementById("certTotalCountOutput").innerText = `${candidateTotal} Cleared Enterprise Track${candidateTotal > 1 ? 's' : ''}`;
+
+        outputBox.style.display = "block";
+      } else {
+        outputBox.style.display = "none";
+        notFoundBox.style.display = "block";
+      }
+    }
+
+    // 8. CANDIDATE JOB APPLICATION FORM
+    const applyJobModal = document.getElementById("applyJobModal");
+    const closeApplyJobModalBtn = document.getElementById("closeApplyJobModalBtn");
+
+    function openApplyJobModal(roleName) {
+      const currentName = localStorage.getItem("davinn_dev_name") || "";
+      const currentEmail = localStorage.getItem("davinn_dev_email") || localStorage.getItem("davinn_auth_session") || "";
+      const currentPhone = localStorage.getItem("davinn_dev_phone") || "";
+
+      document.getElementById("applyCandidateName").value = currentName;
+      document.getElementById("applyCandidateEmail").value = currentEmail;
+      document.getElementById("applyCandidatePhone").value = currentPhone;
+
+      const roleSelect = document.getElementById("applySelectedRole");
+      let matchFound = false;
+      for (let i = 0; i < roleSelect.options.length; i++) {
+        if (roleSelect.options[i].value === roleName) {
+          roleSelect.selectedIndex = i;
+          matchFound = true;
+          break;
+        }
+      }
+      if (!matchFound) {
+        roleSelect.selectedIndex = 0;
+      }
+
+      applyJobModal.style.display = "flex";
+    }
+
+    closeApplyJobModalBtn.onclick = () => {
+      applyJobModal.style.display = "none";
+    };
+
+    async function handleJobApplicationSubmit() {
+      const btn = document.getElementById("applySubmitBtn");
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving to Excel...`;
+      btn.disabled = true;
+
+      const name = document.getElementById("applyCandidateName").value.trim();
+      const email = document.getElementById("applyCandidateEmail").value.trim();
+      const phone = document.getElementById("applyCandidatePhone").value.trim();
+      const college = document.getElementById("applyCollegeName").value.trim();
+      const passYear = document.getElementById("applyPassingYear").value;
+      const role = document.getElementById("applySelectedRole").value;
+
+      const genderRadios = document.getElementsByName("candidateGender");
+      let selectedGender = "Male";
+      for (let r of genderRadios) {
+        if (r.checked) {
+          selectedGender = r.value;
+          break;
+        }
+      }
+
+      localStorage.setItem("davinn_dev_name", name);
+      localStorage.setItem("davinn_dev_email", email);
+      localStorage.setItem("davinn_dev_phone", phone);
+      localStorage.setItem("davinn_auth_session", email);
+
+      const assignedCertId = registerNewCertificate(role, name, email);
+
+      // Push candidate data directly to Excel (Google Sheet)
+      await syncToGoogleSheetExcel({
+        name: name,
+        email: email,
+        phone: phone,
+        gender: selectedGender,
+        college: college,
+        passingYear: passYear,
+        track: role,
+        certificateId: assignedCertId
+      });
+
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      loadSavedProfile();
+      applyJobModal.style.display = "none";
+
+      alert(`Application Successful!\n\nCandidate: ${name}\nEnrolled Track: ${role}\nAllocated Certificate Serial: ${assignedCertId}\n\nYour application has been stored in our system spreadsheet.`);
+      switchPage("profile-section");
+    }
+
+    // 9. LMS APTITUDE ROUND (12 QUESTIONS)
+    const masterQuestionBank = [
+      {
+        q: "A train running at 72 km/hr crosses a 260 m long platform in 23 seconds. What is the length of the train?",
+        options: ["200 meters", "250 meters", "220 meters", "180 meters"],
+        answerIndex: 0
+      },
+      {
+        q: "If 12 software engineers can complete a sprint backlog in 15 days, in how many days can 20 engineers complete the identical module?",
+        options: ["10 days", "9 days", "8 days", "12 days"],
+        answerIndex: 1
+      },
+      {
+        q: "Look at this sequence of squares: 4, 9, 25, 49, 121, (?). Which prime number square comes next?",
+        options: ["144", "169", "196", "225"],
+        answerIndex: 1
+      },
+      {
+        q: "Pointing to a photograph, a Tech Lead says, 'He is the son of the only daughter of my father'. How is the Tech Lead related to the person in the photo?",
+        options: ["Father", "Uncle", "Brother", "Mother"],
+        answerIndex: 3
+      },
+      {
+        q: "In a testing batch of 80 tickets, 25% are high-priority bugs. If 10 more high-priority tickets are added, what is the new high-priority percentage?",
+        options: ["30%", "33.33%", "35%", "40%"],
+        answerIndex: 1
+      },
+      {
+        q: "A developer saves $50 in January, $100 in February, and $150 in March. Following this arithmetic progression, how much will they save in total after 12 months?",
+        options: ["$3,600", "$3,900", "$4,200", "$3,750"],
+        answerIndex: 1
+      },
+      {
+        q: "In a code review meeting, Pipe A can fill a buffer in 6 minutes, and Pipe B can empty it in 8 minutes. If both run together, in how much time will the buffer be filled?",
+        options: ["14 minutes", "20 minutes", "24 minutes", "18 minutes"],
+        answerIndex: 2
+      },
+      {
+        q: "Find the odd one out from the technical logic sequence: 2, 5, 10, 17, 26, 37, 50, 64.",
+        options: ["37", "50", "64", "26"],
+        answerIndex: 2
+      },
+      {
+        q: "If 'DEVELOP' is coded as 'EFWFMPQ' by shifting each character by +1, how is 'SYSTEM' encoded under the identical logic?",
+        options: ["TZTUFN", "TZUTFN", "SYTUNF", "TZUUGN"],
+        answerIndex: 0
+      },
+      {
+        q: "A server has an average latency of 40ms for the first 4 requests and 60ms for the next 6 requests. What is the overall weighted average latency?",
+        options: ["48 ms", "50 ms", "52 ms", "54 ms"],
+        answerIndex: 2
+      },
+      {
+        q: "Two microservices travel toward each other from endpoints 300 km apart at speeds of 60 km/hr and 40 km/hr respectively. In how many hours will they meet?",
+        options: ["2.5 hours", "3.0 hours", "3.5 hours", "4.0 hours"],
+        answerIndex: 1
+      },
+      {
+        q: "What is the probability of selecting an even number ticket from an indexed array of cards numbered 1 to 25 inclusive?",
+        options: ["12/25", "13/25", "1/2", "11/25"],
+        answerIndex: 0
+      }
+    ];
+
+    let currentQuestions = [];
+    let currentQIndex = 0;
+    let candidateScore = 0;
+    let quizInterval = null;
+    let remainingTimeSec = 600;
+
+    const aptitudeQuizOverlay = document.getElementById("aptitudeQuizOverlay");
+    const quizQuestionDisplay = document.getElementById("quizQuestionDisplay");
+    const quizOptionsContainer = document.getElementById("quizOptionsContainer");
+    const quizCounterText = document.getElementById("quizCounterText");
+    const quizProgressFill = document.getElementById("quizProgressFill");
+    const quizTimerText = document.getElementById("quizTimerText");
+
+    function checkLockoutStatus() {
+      const lockUntil = localStorage.getItem("davinn_lms_lockout_until");
+      const round1Passed = localStorage.getItem("davinn_round1_passed");
+
+      if (round1Passed === "true") {
+        unlockRound2();
+        return;
+      }
+
+      if (lockUntil) {
+        const remaining = parseInt(lockUntil, 10) - Date.now();
+        if (remaining > 0) {
+          lockAptitudeTest(remaining);
+        } else {
+          localStorage.removeItem("davinn_lms_lockout_until");
+        }
+      }
+    }
+
+    function lockAptitudeTest(remainingMs) {
+      const startBtn = document.getElementById("startAptitudeBtn");
+      const notice = document.getElementById("lmsLockoutNotice");
+      const timerDisplay = document.getElementById("lmsCooldownTimer");
+
+      startBtn.disabled = true;
+      startBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Locked for 24 Hours`;
+      notice.style.display = "block";
+
+      const updateCountdown = () => {
+        const left = parseInt(localStorage.getItem("davinn_lms_lockout_until") || "0", 10) - Date.now();
+        if (left <= 0) {
+          notice.style.display = "none";
+          startBtn.disabled = false;
+          startBtn.innerHTML = `<i class="fa-solid fa-play"></i> Start Aptitude &amp; Analytical Round (12 MCQs)`;
+          localStorage.removeItem("davinn_lms_lockout_until");
+        } else {
+          const hrs = String(Math.floor(left / (1000 * 60 * 60))).padStart(2, '0');
+          const mins = String(Math.floor((left % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+          const secs = String(Math.floor((left % (1000 * 60)) / 1000)).padStart(2, '0');
+          timerDisplay.innerText = `${hrs}:${mins}:${secs}`;
+          setTimeout(updateCountdown, 1000);
+        }
+      };
+      updateCountdown();
+    }
+
+    function unlockRound2() {
+      const r2Card = document.getElementById("round2Card");
+      const r2Badge = document.getElementById("round2Badge");
+      const r2Btn = document.getElementById("round2ActionBtn");
+      const r1Badge = document.getElementById("round1StatusBadge");
+      const r1Btn = document.getElementById("startAptitudeBtn");
+      const r2Desc = document.getElementById("round2CardDescription");
+
+      r1Badge.className = "project-status-badge status-completed";
+      r1Badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> Passed`;
+      r1Btn.disabled = true;
+      r1Btn.innerHTML = `<i class="fa-solid fa-check-double"></i> Stage 1 Cleared`;
+
+      r2Card.style.opacity = "1";
+      r2Badge.className = "project-status-badge status-ongoing";
+      r2Badge.innerHTML = `<i class="fa-solid fa-envelope-circle-check"></i> Mail Dispatched`;
+      
+      if (r2Desc) {
+        r2Desc.innerHTML = `<strong style="color:#10b981;"><i class="fa-solid fa-check"></i> Aptitude Cleared!</strong> Your Technical Sandbox invitation link has been dispatched to your registered email address. Please inspect your inbox.`;
+      }
+
+      r2Btn.disabled = false;
+      r2Btn.innerHTML = `<i class="fa-solid fa-envelope-open-text"></i> Check Registered Mail for Sandbox Link`;
+    }
+
+    function startAptitudeExam() {
+      const lockUntil = localStorage.getItem("davinn_lms_lockout_until");
+      if (lockUntil && parseInt(lockUntil, 10) > Date.now()) {
+        alert("Your student ID is in a 24-hour assessment cooldown.");
+        return;
+      }
+
+      currentQuestions = [...masterQuestionBank].sort(() => Math.random() - 0.5);
+      currentQIndex = 0;
+      candidateScore = 0;
+      remainingTimeSec = 600;
+
+      document.getElementById("quizActiveContainer").style.display = "block";
+      document.getElementById("quizResultContainer").style.display = "none";
+      document.getElementById("resultEmailNoticeBanner").style.display = "none";
+      aptitudeQuizOverlay.style.display = "flex";
+
+      renderCurrentQuestion();
+      startQuizTimer();
+    }
+
+    function renderCurrentQuestion() {
+      const item = currentQuestions[currentQIndex];
+      quizCounterText.innerText = `Question ${currentQIndex + 1} of ${currentQuestions.length}`;
+      quizProgressFill.style.width = `${((currentQIndex) / currentQuestions.length) * 100}%`;
+      quizQuestionDisplay.innerText = `${currentQIndex + 1}. ${item.q}`;
+      
+      quizOptionsContainer.innerHTML = "";
+      item.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "quiz-option-btn";
+        btn.innerHTML = `<span style="width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700;">${String.fromCharCode(65 + idx)}</span> <span>${opt}</span>`;
+        btn.onclick = () => selectQuizAnswer(idx);
+        quizOptionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectQuizAnswer(selectedIndex) {
+      if (selectedIndex === currentQuestions[currentQIndex].answerIndex) {
+        candidateScore++;
+      }
+      currentQIndex++;
+      if (currentQIndex < currentQuestions.length) {
+        renderCurrentQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function startQuizTimer() {
+      clearInterval(quizInterval);
+      quizInterval = setInterval(() => {
+        remainingTimeSec--;
+        const mins = String(Math.floor(remainingTimeSec / 60)).padStart(2, '0');
+        const secs = String(remainingTimeSec % 60).padStart(2, '0');
+        quizTimerText.innerText = `${mins}:${secs}`;
+
+        if (remainingTimeSec <= 0) {
+          clearInterval(quizInterval);
+          finishQuiz();
+        }
+      }, 1000);
+    }
+
+    function finishQuiz() {
+      clearInterval(quizInterval);
+      document.getElementById("quizActiveContainer").style.display = "none";
+      const resultBox = document.getElementById("quizResultContainer");
+      resultBox.style.display = "block";
+
+      const total = currentQuestions.length;
+      const percentage = Math.round((candidateScore / total) * 100);
+      document.getElementById("finalScoreVal").innerText = `${candidateScore} / ${total}`;
+      document.getElementById("finalScorePct").innerText = `${percentage}%`;
+
+      const iconBox = document.getElementById("resultIconBox");
+      const title = document.getElementById("resultTitle");
+      const notice = document.getElementById("resultScoreNotice");
+      const statusText = document.getElementById("finalStatusText");
+      const ackBtn = document.getElementById("quizResultAcknowledgeBtn");
+      const emailNoticeBanner = document.getElementById("resultEmailNoticeBanner");
+      const mailTarget = document.getElementById("resultMailTarget");
+
+      const userEmail = localStorage.getItem("davinn_dev_email") || localStorage.getItem("davinn_auth_session") || "your registered email";
+
+      if (percentage >= 60) {
+        iconBox.style.background = "rgba(16, 185, 129, 0.2)";
+        iconBox.style.color = "#10b981";
+        iconBox.innerHTML = `<i class="fa-solid fa-trophy"></i>`;
+        title.innerText = "Congratulations! Stage-1 Cleared";
+        
+        mailTarget.innerText = userEmail;
+        emailNoticeBanner.style.display = "block";
+        notice.innerText = `You scored ${candidateScore} out of ${total} (${percentage}%), meeting our corporate logic benchmark.`;
+        
+        statusText.style.color = "#10b981";
+        statusText.innerText = "Passed (Check Registered Mail for Sandbox Link)";
+        ackBtn.innerText = "Understood &amp; Check Mail";
+
+        localStorage.setItem("davinn_round1_passed", "true");
+        unlockRound2();
+      } else {
+        emailNoticeBanner.style.display = "none";
+        iconBox.style.background = "rgba(239, 68, 68, 0.2)";
+        iconBox.style.color = "#ef4444";
+        iconBox.innerHTML = `<i class="fa-solid fa-hourglass-end"></i>`;
+        title.innerText = "Assessment Benchmark Not Met";
+        notice.innerText = `You scored ${candidateScore} out of ${total} (${percentage}%). Minimum passing benchmark is 60%. Per incubator policy, your student ID is placed on a 24-hour assessment cooldown.`;
+        statusText.style.color = "#ef4444";
+        statusText.innerText = "Locked for 24 Hours";
+        ackBtn.innerText = "Acknowledge &amp; Close";
+
+        const lockoutDuration = 24 * 60 * 60 * 1000;
+        localStorage.setItem("davinn_lms_lockout_until", (Date.now() + lockoutDuration).toString());
+        lockAptitudeTest(lockoutDuration);
+      }
+    }
+
+    function closeQuizResult() {
+      aptitudeQuizOverlay.style.display = "none";
+      if (localStorage.getItem("davinn_round1_passed") === "true") {
+        switchPage("lms-section");
+      }
+    }
+
+    // 10. GLOBAL SEARCH ENGINE
+    const searchableIndex = [
+      { title: "Home & Platform Overview", category: "Section", keywords: "home welcome enterprise incubator sprint agile", target: "home-section", type: "page" },
+      { title: "Active Careers & Engineering Tracks", category: "Careers", keywords: "careers roles openings jobs tracks apply", target: "internship-section", type: "page" },
+      { title: "Candidate Evaluation LMS (3 Rounds)", category: "Assessment", keywords: "lms assessment aptitude round test quiz exam coding", target: "lms-section", type: "page" },
+      { title: "About Company & Policy Standards", category: "About", keywords: "about free internship stipend no stipend welcome kit company incubator", target: "about-section", type: "page" },
+      { title: "Hall of Fame - Top Deliveries", category: "Showcase", keywords: "hall of fame top engineers showcase alumni client tickets", target: "hall-of-fame-section", type: "page" },
+      { title: "Developer Profile & Credentials", category: "Account", keywords: "profile my account credentials linkedin github email phone", target: "profile-section", type: "page" },
+      
+      { title: "Verify Official Certificate", category: "Verification", keywords: "verify certificate credential serial validation authentication check dav", target: "verifyCertificateModal", type: "modal" },
+      { title: "Developer Welcome Kit & Gift Policy", category: "Benefits", keywords: "kit welcome kit merchandise gift attractive project reward delivery", target: "home-section", type: "page" },
+      { title: "100% Free Virtual Internship", category: "Policy", keywords: "free zero cost fees no charge unpaid stipend", target: "home-section", type: "page" },
+      
+      { title: "Full Stack Java Developer", category: "Track", keywords: "java spring boot hibernate mysql backend enterprise", target: "internship-section", type: "page" },
+      { title: "MERN Stack Developer", category: "Track", keywords: "mern react node express mongodb javascript frontend", target: "internship-section", type: "page" },
+      { title: "Full-Stack Python Developer", category: "Track", keywords: "python django fastapi postgresql jinja htmx fullstack", target: "internship-section", type: "page" },
+      { title: "Node.js Backend Engineer", category: "Track", keywords: "node nodejs express nestjs redis microservices backend", target: "internship-section", type: "page" },
+      { title: "C & C++ Systems Engineer", category: "Track", keywords: "c cpp c++ systems pointers stl memory posix native", target: "internship-section", type: "page" },
+      { title: "Data Analyst & Business Intelligence", category: "Track", keywords: "data analyst bi power bi tableau sql pandas python analytics", target: "internship-section", type: "page" },
+      { title: "Web Development Specialist (HTML/CSS/DOM)", category: "Certification", keywords: "web development html css dom responsive frontend certificate", target: "internship-section", type: "page" },
+      { title: "SQL Database Engineering & Optimization", category: "Certification", keywords: "sql database mysql postgresql schema normalization stored procedures", target: "internship-section", type: "page" },
+      { title: "React.js Component Architecture", category: "Certification", keywords: "react reactjs redux components ui state hooks", target: "internship-section", type: "page" },
+      { title: "Modern JavaScript (ES6+) Engineering", category: "Certification", keywords: "javascript js es6 async await promises dom apis", target: "internship-section", type: "page" }
+    ];
+
+    const desktopSearchInput = document.getElementById("desktopSearchInput");
+    const desktopSearchDropdown = document.getElementById("desktopSearchDropdown");
+    const mobileSearchInput = document.getElementById("mobileSearchInput");
+    const mobileSearchResults = document.getElementById("mobileSearchResults");
+    const mobileSearchOverlay = document.getElementById("mobileSearchOverlay");
+    const openMobileSearchBtn = document.getElementById("openMobileSearchBtn");
+    const closeMobileSearchBtn = document.getElementById("closeMobileSearchBtn");
+
+    function executeGlobalSearch(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) return [];
+      return searchableIndex.filter(item => {
+        return item.title.toLowerCase().includes(q) ||
+               item.keywords.toLowerCase().includes(q) ||
+               item.category.toLowerCase().includes(q);
+      });
+    }
+
+    function renderSearchResults(results, container, isMobile = false) {
+      container.innerHTML = "";
+      if (results.length === 0) {
+        container.innerHTML = `<div style="padding: 12px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">No matching modules or certificates found.</div>`;
+        if (!isMobile) container.classList.add("active");
+        return;
+      }
+
+      results.forEach(res => {
+        const row = document.createElement("div");
+        row.className = isMobile ? "search-card-item" : "search-item";
+        row.innerHTML = `
+          <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(99,102,241,0.15); display: flex; align-items: center; justify-content: center; color: #818cf8; flex-shrink:0;">
+            <i class="${res.type === 'modal' ? 'fa-solid fa-certificate' : 'fa-solid fa-arrow-up-right-from-square'}"></i>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight: 700; color: #fff; font-size: 0.9rem;">${res.title}</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">${res.category} &bull; Navigate Directly</div>
+          </div>
+        `;
+
+        row.onclick = () => {
+          if (res.type === "page") {
+            switchPage(res.target);
+          } else if (res.type === "modal") {
+            if (res.target === "verifyCertificateModal") {
+              openVerifyModal();
+            }
+          }
+          if (isMobile) {
+            mobileSearchOverlay.classList.remove("active");
+            mobileSearchInput.value = "";
+          } else {
+            desktopSearchDropdown.classList.remove("active");
+            desktopSearchInput.value = "";
+          }
+        };
+
+        container.appendChild(row);
+      });
+
+      if (!isMobile) container.classList.add("active");
+    }
+
+    if (desktopSearchInput) {
+      desktopSearchInput.addEventListener("input", (e) => {
+        const val = e.target.value;
+        if (val.trim().length > 0) {
+          const matched = executeGlobalSearch(val);
+          renderSearchResults(matched, desktopSearchDropdown, false);
+        } else {
+          desktopSearchDropdown.classList.remove("active");
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".desktop-search-wrapper")) {
+          desktopSearchDropdown.classList.remove("active");
+        }
+      });
+    }
+
+    if (openMobileSearchBtn) {
+      openMobileSearchBtn.onclick = () => {
+        mobileSearchOverlay.classList.add("active");
+        setTimeout(() => mobileSearchInput.focus(), 100);
+      };
+    }
+
+    if (closeMobileSearchBtn) {
+      closeMobileSearchBtn.onclick = () => {
+        mobileSearchOverlay.classList.remove("active");
+        mobileSearchInput.value = "";
+      };
+    }
+
+    if (mobileSearchInput) {
+      mobileSearchInput.addEventListener("input", (e) => {
+        const val = e.target.value;
+        if (val.trim().length > 0) {
+          const matched = executeGlobalSearch(val);
+          renderSearchResults(matched, mobileSearchResults, true);
+        } else {
+          mobileSearchResults.innerHTML = "";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
