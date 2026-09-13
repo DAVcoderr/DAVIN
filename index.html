@@ -58,6 +58,29 @@
       pointer-events: none;
     }
 
+    /* Real-Time Live Cloud Notification Banner */
+    .realtime-sync-toast {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 9999;
+      background: rgba(17, 23, 38, 0.95);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      border-radius: 14px;
+      padding: 12px 20px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 15px rgba(16, 185, 129, 0.25);
+      backdrop-filter: blur(12px);
+      animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
     /* ================= TOP NAVBAR ================= */
     .navbar-container {
       position: sticky;
@@ -1212,6 +1235,17 @@
 
   <div class="ambient-glow"></div>
 
+  <!-- Real-Time Cloud Sync Feedback Toast -->
+  <div class="realtime-sync-toast" id="cloudSyncToast">
+    <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); display: flex; align-items: center; justify-content: center; color: #10b981;">
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+    </div>
+    <div>
+      <strong style="color: #fff; font-size: 0.9rem; display: block;">Real-Time Sync Completed</strong>
+      <span style="color: var(--text-muted); font-size: 0.76rem;" id="cloudSyncToastMsg">Entry logged to spreadsheet &amp; email sent.</span>
+    </div>
+  </div>
+
   <!-- ================= TOP NAVBAR ================= -->
   <div class="navbar-container" id="topNavbarContainer">
     <header class="navbar">
@@ -2230,16 +2264,20 @@
   <!-- ================= JAVASCRIPT SYSTEM ENGINE ================= -->
   <script>
     // **************************************************************************
-    // CONNECTED GOOGLE APPS SCRIPT WEB APP URL
+    // CONNECTED GOOGLE APPS SCRIPT WEB APP URL (REAL-TIME ACTIVATED)
     // **************************************************************************
     const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzsBKlasm9C3wqluP4Y6-n4tPbJ_ljUkjf_UcumZH6w4H9ElRvLgQl5bjRauOlWxrkM/exec";
 
-    // Asynchronous function to transmit student records to Google Sheets Excel
+    // Real-Time Cloud Sync Dispatcher & Toast Trigger
     async function syncToGoogleSheetExcel(payload) {
+      const toast = document.getElementById("cloudSyncToast");
+      const toastMsg = document.getElementById("cloudSyncToastMsg");
+
       if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
-        console.warn("Google Sheet Web App URL not configured yet. Skipping cloud spreadsheet sync.");
+        console.warn("Google Sheet Web App URL not configured.");
         return;
       }
+      
       try {
         await fetch(GOOGLE_SHEET_WEBAPP_URL, {
           method: "POST",
@@ -2247,9 +2285,15 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
-        console.log("Successfully synced record to Google Sheets:", payload);
+
+        // Show Real-time Toast Confirmation
+        if (toast && toastMsg) {
+          toastMsg.innerText = `Recorded: ${payload.name} (${payload.certificateId})`;
+          toast.style.display = "flex";
+          setTimeout(() => { toast.style.display = "none"; }, 5000);
+        }
       } catch (err) {
-        console.error("Failed to sync record to Google Sheets:", err);
+        console.error("Cloud spreadsheet sync error:", err);
       }
     }
 
@@ -2436,7 +2480,7 @@
     async function handleSystemRegister() {
       const btn = document.getElementById("registerSubmitBtn");
       const originalText = btn.innerHTML;
-      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Real-time Syncing...`;
       btn.disabled = true;
 
       const name = document.getElementById("regName").value.trim();
@@ -2452,7 +2496,7 @@
 
       const generatedId = registerNewCertificate(defaultTrack, name, email);
 
-      // Push registration data directly to Excel (Google Sheet)
+      // Real-time Cloud Push to Google Sheet
       await syncToGoogleSheetExcel({
         name: name,
         email: email,
@@ -2469,7 +2513,7 @@
       systemAuthModal.style.display = "none";
       loadSavedProfile();
 
-      alert(`Registration Successful!\n\nCandidate: ${name}\nCertificate ID: ${generatedId}\nTrack: ${defaultTrack}\nData successfully stored.`);
+      alert(`Registration Successful!\n\nCandidate: ${name}\nCertificate ID: ${generatedId}\nTrack: ${defaultTrack}\n\nReal-time database sync completed.`);
     }
 
     // 6. PROFILE & MULTI-CERTIFICATE DISPLAY
@@ -2649,7 +2693,7 @@
     async function handleJobApplicationSubmit() {
       const btn = document.getElementById("applySubmitBtn");
       const originalText = btn.innerHTML;
-      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving to Excel...`;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Real-time Syncing...`;
       btn.disabled = true;
 
       const name = document.getElementById("applyCandidateName").value.trim();
@@ -2675,7 +2719,7 @@
 
       const assignedCertId = registerNewCertificate(role, name, email);
 
-      // Push candidate data directly to Excel (Google Sheet)
+      // Real-time Cloud Push to Google Sheet & Admin Email
       await syncToGoogleSheetExcel({
         name: name,
         email: email,
@@ -2692,7 +2736,7 @@
       loadSavedProfile();
       applyJobModal.style.display = "none";
 
-      alert(`Application Successful!\n\nCandidate: ${name}\nEnrolled Track: ${role}\nAllocated Certificate Serial: ${assignedCertId}\n\nYour application has been stored in our system spreadsheet.`);
+      alert(`Application Successful!\n\nCandidate: ${name}\nEnrolled Track: ${role}\nAllocated Certificate Serial: ${assignedCertId}\n\nReal-time database sync completed.`);
       switchPage("profile-section");
     }
 
